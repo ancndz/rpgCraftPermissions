@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 import ru.ancndz.plugin.Configuration;
 import ru.ancndz.plugin.Util;
@@ -22,6 +23,8 @@ public class UseBlock implements Listener{
         if (block == null) return;
         
         if (!block.getBlockData().getMaterial().isInteractable()) return;
+        
+        if (e.getHand().equals(EquipmentSlot.HAND)) return;
         
         String block_name = block.getBlockData().getAsString().split(Pattern.quote("["))[0].replaceAll("minecraft:", "");
         
