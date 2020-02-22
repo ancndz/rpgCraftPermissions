@@ -1,0 +1,24 @@
+--- 
+api-version: 1.15
+author: ancndz
+commands: 
+  rpgcraft: 
+    aliases: 
+      - rcp
+    description: "rpgcraftperm main command."
+    usage: /<command>
+description: "Detail permission manage for each players group."
+main: ru.ancndz.plugin.RpgCraftPermission
+name: RpgCraftPermission
+permissions: 
+  rpgcraft.allowgroup.all.*: 
+    description: "Gives all the rpgCraftPermission craft perms."
+  rpgcraft.debug: 
+    description: "Give permission for viewing hints"
+  rpgcraft.reload: 
+    description: "Gives permission for reload config."
+  rpgcraft.use.*: 
+    description: "Gives all the rpgCraftPermission use perms."
+softdepend: 
+  - Vault
+version: "1.2.0"

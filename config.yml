@@ -1,0 +1,23 @@
+--- 
+allowedItems: 
+  - chest
+  - crafting_table
+  - oak_planks
+  - stick
+disallowedBlocks:
+  - furnace
+  - smoker
+  - enchanting_table
+config: 
+  notifyPlayer: true
+  message: "&7[rpgCraftPerm] &cВы не умеете создавать &o&f%item%."
+  debug: false
+groups: 
+  Fisherman: 
+    0: 
+      - oak_door
+  Woodman: 
+    0: 
+      - oak_door
+    1: 
+      - oak_sign
