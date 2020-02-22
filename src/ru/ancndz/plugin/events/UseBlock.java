@@ -7,6 +7,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
@@ -17,14 +18,15 @@ public class UseBlock implements Listener{
 	
 	@EventHandler
     public void onEch(final PlayerInteractEvent e) {
+		
+		if (e.getAction().equals(Action.LEFT_CLICK_BLOCK)) return;
+		
         final Block block = e.getClickedBlock();
         
     	
         if (block == null) return;
         
         if (!block.getBlockData().getMaterial().isInteractable()) return;
-        
-        if (e.getHand().equals(EquipmentSlot.HAND)) return;
         
         String block_name = block.getBlockData().getAsString().split(Pattern.quote("["))[0].replaceAll("minecraft:", "");
         
