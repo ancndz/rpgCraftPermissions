@@ -3,6 +3,7 @@ package ru.ancndz.plugin;
 import java.util.List;
 import java.util.logging.Level;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -48,7 +49,7 @@ public class Util
 		if (!Configuration.configs.getBoolean("notifyPlayer")) {
             return;
         }
-		p.sendMessage("§7[rpgCraftPerm] §cВы не умеете варить зелья!");
+		p.sendMessage("&7[rpgCraftPerm] &cВы не умеете варить зелья!");
 	}
 
 	
@@ -56,7 +57,7 @@ public class Util
 		if (!Configuration.configs.getBoolean("notifyPlayer")) {
             return;
         }
-		p.sendMessage("§7[rpgCraftPerm] §cВы не умееть накладывать заклинания!");
+		p.sendMessage("&7[rpgCraftPerm] &cВы не умееть накладывать заклинания!");
 	}
 
 
@@ -64,7 +65,7 @@ public class Util
 		if (!Configuration.configs.getBoolean("notifyPlayer")) {
             return;
         }
-		p.sendMessage("§7[rpgCraftPerm] §cВы не умееть использовать печь " + string + "!");
+		p.sendMessage("&7[rpgCraftPerm] &cВы не умееть использовать печь " + string + "!");
 	}
 
 
@@ -72,6 +73,12 @@ public class Util
 		if (!Configuration.configs.getBoolean("notifyPlayer")) {
             return;
         }
-		p.sendMessage("§7[rpgCraftPerm] §cВы не умееть использовать " + name + "!");
+		p.sendMessage(trans("&7[rpgCraftPerm] &cВы не умееть использовать " + name + "!"));
 	}
+	
+	
+	public static String trans(final String arg0) {
+        return ChatColor.translateAlternateColorCodes('&', arg0);
+    }
+	
 }

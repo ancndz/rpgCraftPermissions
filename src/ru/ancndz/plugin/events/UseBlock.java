@@ -2,6 +2,7 @@ package ru.ancndz.plugin.events;
 
 import java.util.regex.Pattern;
 
+import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,8 +37,12 @@ public class UseBlock implements Listener{
         	
 	        
 	        if (Util.debugMode() && p.hasPermission("rpgcraft.debug")) {
-	        	p.sendMessage("§b[rpgCraftPerm][Debug] Нужный доступ: rpgCraft." + block_name);
+	        	p.sendMessage(this.trans("&b[rpgCraftPerm][Debug] Нужный доступ: rpgcraft.use." + block_name));
 	        }
         }
+    }
+	
+	public String trans(final String arg0) {
+        return ChatColor.translateAlternateColorCodes('&', arg0);
     }
 }

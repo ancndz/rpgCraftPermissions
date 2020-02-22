@@ -42,13 +42,14 @@ public class Verbose implements CommandExecutor
         
         if (args.length > 0 && args[0].equalsIgnoreCase("debug") && p.hasPermission("rpgcraft.debug")) {
             if (!Configuration.configs.getBoolean("debug")) {
-                p.sendMessage(trans("§a[rpgCraftPerm] Подсказки доступа активированы."));
+                p.sendMessage(this.trans("&a[rpgCraftPerm] Подсказки доступа активированы."));
                 Configuration.configs.set("debug", true);
             }
             else {
-                p.sendMessage(this.trans("§c[rpgCraftPerm] Подсказки доступа деактивированы."));
+                p.sendMessage(this.trans("&c[rpgCraftPerm] Подсказки доступа деактивированы."));
                 Configuration.configs.set("debug", false);
             }
+            this.plugin.saveConfig();
             return true;
         }
         
