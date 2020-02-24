@@ -9,7 +9,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.EquipmentSlot;
 
 import ru.ancndz.plugin.Configuration;
 import ru.ancndz.plugin.Util;
@@ -35,7 +34,7 @@ public class UseBlock implements Listener{
         	
         	final Player p = e.getPlayer();
         	
-		        if (!p.hasPermission("rpgcraft.use." + block_name) || p.hasPermission("rpgcraft.use.*")) {
+		        if (!p.hasPermission("rpgcraft.use." + block_name) || !p.hasPermission("rpgcraft.use.*")) {
 			        e.setCancelled(true);
 			        Util.sendNoPermUse(p, block_name);
 	            }      
