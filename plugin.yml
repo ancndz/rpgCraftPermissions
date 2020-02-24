@@ -19,6 +19,21 @@ permissions:
     description: "Gives permission for reload config."
   rpgcraft.use.*: 
     description: "Gives all the rpgCraftPermission use perms."
+  rpgcraft.breed.*: 
+    description: "Gives all the rpgCraftPermission breed perms."
+  rpgcraft.breed.farm: 
+    description: "Gives perms for interact with pigs, cow, etc. (animals for resources)."
+  rpgcraft.breed.helpers: 
+    description: "Gives perms for interact with wolves, cats, etc. (animals for help)."
+  rpgcraft.breed.horse: 
+    description: "Gives perms for interact with horses, lamas, etc. (animals for travel)."
+  rpgcraft.collect.*: 
+    description: "Gives perms for collect all goodies."
+  rpgcraft.collect.food: 
+    description: "Gives perms for collect food goodies (wheat etc.)."
+  rpgcraft.collect.ing: 
+    description: "Gives perms for collect brewing goodies (only nether wart)."
+    
 softdepend: 
   - Vault
-version: "1.2.0"
+version: "1.3.0"
