@@ -13,6 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import ru.ancndz.plugin.events.AnimalFram;
+import ru.ancndz.plugin.events.BreakBlock;
 import ru.ancndz.plugin.events.Craft;
 import ru.ancndz.plugin.events.UseBlock;
 
@@ -26,6 +28,8 @@ public class RpgCraftPermission extends JavaPlugin {
         //this.getServer().getPluginManager().registerEvents((Listener)new Smelt(), (Plugin)this);
         //this.getServer().getPluginManager().registerEvents((Listener)new Anvil(), (Plugin)this);
         this.getServer().getPluginManager().registerEvents((Listener)new UseBlock(), (Plugin)this);
+        this.getServer().getPluginManager().registerEvents((Listener)new AnimalFram(), (Plugin)this);
+        this.getServer().getPluginManager().registerEvents((Listener)new BreakBlock(), (Plugin)this);
         //Smelt.CancelSmeltProgress();
         this.getCommand("rpgcraft").setExecutor((CommandExecutor)new Verbose((Plugin)this));
         Util.setupPerms((Plugin)this);
@@ -92,7 +96,7 @@ public class RpgCraftPermission extends JavaPlugin {
 	
 	public static ItemStack toItemStack(String arg0) {
         arg0 = arg0.toUpperCase();
-        return new ItemStack(Material.getMaterial(arg0.contains("-") ? arg0.split("-")[0] : arg0), 1);
+        return new ItemStack(Material.getMaterial(arg0));
     }
 	
 	
