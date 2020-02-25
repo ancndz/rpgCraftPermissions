@@ -4,18 +4,19 @@ allowedItems:
   - crafting_table
   - oak_planks
   - stick
-disallowedBlocks:
+config: 
+  debug: false
+  enableHorsePerk: true
+  helpChestCords: 
+    - 0
+    - 0
+    - 0
+  message: "&7[rpgCraftPerm] &cВы не умеете создавать &o&f%item%."
+  notifyPlayer: true
+disallowedBlocks: 
   - furnace
   - smoker
   - enchanting_table
-config: 
-  notifyPlayer: true
-  message: "&7[rpgCraftPerm] &cВы не умеете создавать &o&f%item%."
-  debug: false
-  #if enableHorsePerk: true - player should have rpgcraft.breed.horse perm
-  ##for using and breeding horses, mules, donkeys and lamas.
-  ###if false - everyone can do it
-  enableHorsePerk: true
 groups: 
   Fisherman: 
     0: 
