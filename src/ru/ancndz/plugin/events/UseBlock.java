@@ -20,10 +20,22 @@ public class UseBlock implements Listener{
 		
 		if (e.getAction().equals(Action.LEFT_CLICK_BLOCK)) return;
 		
+		final Player p = e.getPlayer();
+		
+		if (p.isSneaking() && e.isBlockInHand()) {
+			return;
+		}
+		
         final Block block = e.getClickedBlock();
         
-    	
         if (block == null) return;
+        
+        if (Util.debugMode() && p.hasPermission("rpgcraft.debug")) {
+        	p.sendMessage(this.trans("&b----------"));
+        	p.sendMessage(this.trans("&b[rpgCraftPerm][Debug] Name: " + block.getBlockData().getAsString()));
+        	p.sendMessage(this.trans("&b[rpgCraftPerm][Debug] X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ()));
+
+        }
         
         if (!block.getBlockData().getMaterial().isInteractable()) return;
         
@@ -32,14 +44,11 @@ public class UseBlock implements Listener{
         
         if (Configuration.disallowedToUse.contains(block_name)) {
         	
-        	final Player p = e.getPlayer();
-        	
 		        if (!p.hasPermission("rpgcraft.use." + block_name) || !p.hasPermission("rpgcraft.use.*")) {
 			        e.setCancelled(true);
 			        Util.sendNoPermUse(p, block_name);
 	            }      
         	
-	        
 	        if (Util.debugMode() && p.hasPermission("rpgcraft.debug")) {
 	        	p.sendMessage(this.trans("&b[rpgCraftPerm][Debug] Нужный доступ: rpgcraft.use." + block_name));
 	        }
