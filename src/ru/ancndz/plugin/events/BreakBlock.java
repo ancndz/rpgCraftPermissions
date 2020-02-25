@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class BreakBlock implements Listener{
 	
@@ -18,8 +19,16 @@ public class BreakBlock implements Listener{
 				block.equals(Material.POTATOES) || block.equals(Material.CARROTS)) {
 			
 			if (!p.hasPermission("rpgcraft.collect.food") || !p.hasPermission("rpgcraft.collect.*")) {
-				e.setDropItems(false);
-				p.sendMessage("it was your food...");
+				ItemStack item = p.getInventory().getItemInMainHand();
+				
+				if (item.getType().equals(Material.DIAMOND_HOE) || item.getType().equals(Material.GOLDEN_HOE) ||
+						item.getType().equals(Material.IRON_HOE) || item.getType().equals(Material.STONE_HOE) ||
+						item.getType().equals(Material.WOODEN_HOE)) {
+					return;
+				} else {
+					e.setDropItems(false);
+					p.sendMessage("it was your food..."); 
+				}
 			}
 		}
 		
