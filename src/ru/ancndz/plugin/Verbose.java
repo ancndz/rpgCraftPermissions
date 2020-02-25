@@ -1,12 +1,19 @@
 package ru.ancndz.plugin;
 
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import java.util.UUID;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
 import org.bukkit.command.CommandExecutor;
 
 public class Verbose implements CommandExecutor
@@ -24,19 +31,26 @@ public class Verbose implements CommandExecutor
 	}
 
 	public boolean onCommand(final CommandSender sender, final Command cmd, final String id, final String[] args) {
+		/*
         if (!(sender instanceof Player)) {
             sender.sendMessage("[rpgCraftPerm] Команда не может быть выполнена сервером!");
             return true;
-        }
-        final Player p = (Player)sender;
-        
-        if (args.length == 0) {
+        } else { final Player p = (Player)sender; }
+        */
+		Player p = null;
+		boolean iscmd = true;
+		if ((sender instanceof Player)) { 
+			p = (Player)sender; 
+			iscmd = false;
+		}
+		
+        if (args.length == 0 && !iscmd) {
         	sender.sendMessage("#####");
             sender.sendMessage(this.trans("&e&lАвтор плагина: ancndz."));
             sender.sendMessage(this.trans("&7Специально для проекта &l&6pcserver&r&7."));
             sender.sendMessage(this.trans("&7Have fun!"));
             sender.sendMessage("#####");
-            if (p.hasPermission("rpgcraft.debug")) { sender.sendMessage(this.trans("&7Use [/rpgcraft debug] for toggle debug mode.")); }
+            if (sender.hasPermission("rpgcraft.debug")) { sender.sendMessage(this.trans("&7Use [/rpgcraft debug] for toggle debug mode.")); }
             return false;
         }
         
@@ -58,10 +72,15 @@ public class Verbose implements CommandExecutor
             return true;
         }
         
+        if (args.length > 0 && args[0].equalsIgnoreCase("help")) {
+        	RpgCraftPermission.giveHelpBook(p);
+            return true;
+        }
+        
         return false;
     }
-    
-    public String trans(final String arg0) {
+
+	public String trans(final String arg0) {
         return ChatColor.translateAlternateColorCodes('&', arg0);
     }
 }
