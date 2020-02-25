@@ -5,10 +5,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.BlockInventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -76,7 +81,15 @@ public class RpgCraftPermission extends JavaPlugin {
         }
 		final ArrayList<ItemStack> l = new ArrayList<ItemStack>();
         for (final String s : Configuration.allowedToCraft) {
-            l.add(toItemStack(s));
+        	String[] split = s.split("_", 2);
+        	if (split[0].equalsIgnoreCase("wood")) {
+        		l.add(toItemStack("oak_" + split[1]));
+        		l.add(toItemStack("spruce_" + split[1]));
+        		l.add(toItemStack("birch_" + split[1]));
+        		l.add(toItemStack("jungle_" + split[1]));
+        		l.add(toItemStack("acacia_" + split[1]));
+        		l.add(toItemStack("dark_oak_" + split[1]));
+        	} else l.add(toItemStack(s));
         }
 		return l;
 	}
@@ -114,4 +127,35 @@ public class RpgCraftPermission extends JavaPlugin {
 		 }
 		return true;
 	 }
+	
+	
+	public static void giveHelpBook(Player p) {
+    	
+    	List<Double> cords = Configuration.configs.getDoubleList("helpChestCords");
+    	
+    	
+    	if (cords.get(0) == 0 && cords.get(1) == 0 && cords.get(2) == 0) return;
+    	
+    	Location location = new Location(p.getWorld(), cords.get(0), cords.get(1), cords.get(2));
+    	Block raw_block = location.getBlock();
+    	BlockState state = raw_block.getState();
+    	
+    	if (state instanceof BlockInventoryHolder) {
+    		
+    		BlockInventoryHolder container = (BlockInventoryHolder) state;
+    		
+    		for (ItemStack item : container.getInventory().getContents()) {
+    			if (item != null) p.getInventory().addItem(item);
+    		}
+        	p.updateInventory();
+        	
+    	} else {
+    		if (Util.debugMode() && p.hasPermission("rpgcraft.debug")) {
+    			p.sendMessage("Block in config is not container!");
+    		}
+    		p.sendMessage("Whops, no help books on server! Contact mods or admins.");
+    	} 
+
+	}
+	
 }
